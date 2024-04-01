@@ -28,33 +28,25 @@ namespace Tooth_Booth_API.BusinessLogic
             _clinicRepository = clinicRepository;
         }
 
-        public async Task<IEnumerable<ClinicDTO>> GetAllClinic(string clinicAdminId, int? clinicId,string clinicName,string clinicCity,bool? isVerified)
+        public async Task<IEnumerable<ClinicDTO>> GetAllClinic(string clinicAdminId, string clinicCity)
         {
-            
-            var Allclinics= await _clinicRepository.GetAll(clinicCity);
-            var clinics = _mapper.Map<IEnumerable<ClinicDTO>>(Allclinics);
-
-
-            if (!string.IsNullOrEmpty(clinicAdminId))
-            {
-                return clinics.Where((obj) => obj.ClinicAdminId == clinicAdminId);
-            }
-            if (clinicId.HasValue)
-            {
-                return clinics.Where((obj) => obj.ClinicId == clinicId);
-            }
-                   
-            if(!string.IsNullOrEmpty(clinicName))
-            {
-              clinics=clinics.Where((obj) => obj.ClinicName == clinicName);
-            }
-           
-            if (isVerified.HasValue)
-            {
-                clinics = clinics.Where((obj) => obj.Isverified==isVerified);
-            }
-            return clinics;
-        }
+      if (!string.IsNullOrEmpty(clinicCity))
+       {
+        var Allclinics = await _clinicRepository.GetAll(clinicCity);
+        var clinics = _mapper.Map<IEnumerable<ClinicDTO>>(Allclinics);
+        if (!string.IsNullOrEmpty(clinicAdminId))
+        {
+         return  clinics.Where((obj) => obj.ClinicAdminId == clinicAdminId);
+       }
+       return clinics;
+      
+  }
+  else 
+  {
+      var Allclinics = await _clinicRepository.GetAll(clinicAdminId);
+      return _mapper.Map<IEnumerable<ClinicDTO>>(Allclinics);
+  }  
+}
             
 
         
