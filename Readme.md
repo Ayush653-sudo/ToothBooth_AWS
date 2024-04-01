@@ -55,11 +55,7 @@ If already installed check if new version is available.
     dotnet tool update -g Amazon.Lambda.Tools
 ```
 
-Execute unit tests
-```
-    cd "serverless_dotnet/test/serverless_dotnet.Tests"
-    dotnet test
-```
+
 
 Deploy application
 ```
