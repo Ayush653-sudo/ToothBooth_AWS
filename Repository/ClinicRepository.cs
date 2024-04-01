@@ -24,7 +24,7 @@ namespace Tooth_Booth_API.Repository
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Clinic>>GetAll(string node)
+        public async Task<IEnumerable<Clinic>>GetAll(string node="jaipur")
         {
             node = "Clinics#" + node;
             var data = await dynamoDBContext.QueryAsync<ToothBoothDB>(node)
