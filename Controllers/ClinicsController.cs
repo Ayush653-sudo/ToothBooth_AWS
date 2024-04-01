@@ -27,16 +27,16 @@ namespace Tooth_Booth_API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Get(string clinicAdminId,int?clinicId,string clinicName,string clinicCity,bool? isVerified)
-        {
-            
+ public async Task<IActionResult> Get(string clinicAdminId,string clinicCity)
+ {
+     
 
-                var listOfClinic = await _clinicsBusiness.GetAllClinic(clinicAdminId,clinicId, clinicName, clinicCity, isVerified);
-                return Ok(listOfClinic);
-            
-            
+         var listOfClinic = await _clinicsBusiness.GetAllClinic(clinicAdminId,clinicCity);
+         return Ok(listOfClinic);
+     
+     
 
-        }
+ }
 
         
 
